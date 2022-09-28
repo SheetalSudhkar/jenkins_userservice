@@ -32,7 +32,7 @@ pipeline {
                 sh 'mvn test'
                 }
            }   
-        stage('jar') {
+        stage('build') {
            steps {
            
                 sh 'mvn package -DskipTests=true'
@@ -41,7 +41,12 @@ pipeline {
                 
            }
          }  
+         stage('dockerize'){
+         steps{
+         sh 'docker build -t user-service:latest .'
+         }
     }
-}     
+}  
+}   
            
                 
