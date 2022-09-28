@@ -4,23 +4,23 @@ pipeline {
     stages {
     
        stage('clean') {
-           stages {
+           steps {
                 sh 'mvn clean'
                 }
            }
        stage('compile') {
-           stages {
+           steps {
                 sh 'mvn compile'
                 }
            }
            
         stage('test') {
-           stages {
+           steps {
                 sh 'mvn test'
                 }
            }   
         stage('jar') {
-           stages {
+           steps {
                 sh 'mvn package -DskipTests=true'
            }
          }  
