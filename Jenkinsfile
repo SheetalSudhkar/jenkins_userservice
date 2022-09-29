@@ -1,6 +1,10 @@
 pipeline{
   agent any
   
+  environment {
+  DOCKER_IMG_NAME = 'user-service'
+  DOCKER_TMP_CONTAINER_NAME = 'tmp-user-service-container'
+  
   stages{
      stage('clean'){
         steps{
@@ -9,6 +13,7 @@ pipeline{
       }
       stage('compile'){
         steps{
+          echo 'compiling source files...'
           sh 'mvn compile'
         }
       }
@@ -31,7 +36,8 @@ pipeline{
       }
       stage('dockersize'){
         steps{
-          sh 'docker build -t user-service:latest .'
+        echo 'building the docker image for user-service...'
+          sh 'docker build -t ${DOCKER_IMG_NAME}:latest -t ${DOCKER_IMG_NAME}:${env.BUILD_ID} .'
         }
       }
       stage('integration tests'){
@@ -52,5 +58,5 @@ pipeline{
   
 }
 
-
+   
    
