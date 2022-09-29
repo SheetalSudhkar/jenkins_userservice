@@ -41,14 +41,14 @@ pipeline{
         echo 'building the docker image for user-service...'
           sh "docker build -t ${DOCKER_IMG_NAME}:latest -t ${DOCKER_IMG_NAME}:${env.BUILD_ID} ."
         }
-      }/*
+      }
       stage('integration tests'){
         steps{
           sh 'docker run -dp 7070:8080 --rm --name tmp-user-service-container user-service:latest'
           sleep 30
           sh 'curl -i http://localhost:7070/api/users'
         }
-      }*/
+      }
       stage('docker publish'){
       steps{
       withDockerRegistry([credentialsId: 'docker_creds', url: '']) {
