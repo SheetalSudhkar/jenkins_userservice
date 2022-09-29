@@ -4,7 +4,7 @@ pipeline{
   environment {
   DOCKER_IMG_NAME = 'user-service'
   DOCKER_TMP_CONTAINER_NAME = 'tmp-user-service-container'
-  DOCKERREPO= 'dockertraining26'
+  DOCKER_SREPO= 'dockertraining26'
   }
   
   stages{
